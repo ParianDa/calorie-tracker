@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
+import "./TrackCalories.css"
+import CalorieMeter from "./CalorieMeter";
 
 const TrackCalories = () => {
   const [height, setHeight] = useState(0);
@@ -6,8 +8,8 @@ const TrackCalories = () => {
   const [age, setAge] = useState(0);
   const [rcalorie, setRcalorie] = useState(0);
   const [activity, setActivity] = useState("Select Activity level");
-  
 
+  
   function handleSubmit(event) {
     event.preventDefault();
     const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -38,7 +40,7 @@ const TrackCalories = () => {
   }
 
   return (
-    <div>
+    <div className="tc-container">
       <h2>Welcome to calorie counter</h2>
       <form onSubmit={handleSubmit}>
         Give your details:
@@ -74,6 +76,10 @@ const TrackCalories = () => {
         <button type="submit">Give my required calorie</button>
       </form>
       <span>Your required calorie intake is : {rcalorie}</span>
+
+      <div className="calorie-tracker-card">
+        <CalorieMeter maxCalories={rcalorie}/>
+      </div>
     </div>
   );
 };
